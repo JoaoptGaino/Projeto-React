@@ -23,56 +23,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: 200,
   },
 }));
-// const produtos = [
-//   {
-//     nome: "Produto 1",
-//     descricao: "Descrição produto 1",
-//     preco: 100,
-//     img: "https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg",
-//   },
-//   {
-//     nome: "Produto 2",
-//     descricao: "Descrição produto 2",
-//     preco: 200,
-//     img: "https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg",
-//   },
-//   {
-//     nome: "Produto 3",
-//     descricao: "Descrição produto 3",
-//     preco: 300,
-//     img: "https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg",
-//   },
-//   {
-//     nome: "Produto 4",
-//     descricao: "Descrição produto 4",
-//     preco: 400,
-//     img: "https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg",
-//   },
-//   {
-//     nome: "Produto 5",
-//     descricao: "Descrição produto 5",
-//     preco: 500,
-//     img: "https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg",
-//   },
-//   {
-//     nome: "Produto 6",
-//     descricao: "Descrição produto 6",
-//     preco: 600,
-//     img: "https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg",
-//   },
-//   {
-//     nome: "Produto 7",
-//     descricao: "Descrição produto 7",
-//     preco: 700,
-//     img: "https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg",
-//   },
-//   {
-//     nome: "Produto 8",
-//     descricao: "Descrição produto 8",
-//     preco: 800,
-//     img: "https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg",
-//   },
-// ];
+
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
 

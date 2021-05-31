@@ -1,29 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { Grid } from "@material-ui/core";
 import Produto from "./components/Produto";
-import AppBar from '@material-ui/core/AppBar'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/Box'
-import Toolbar from '@material-ui/core/Toolbar'
-import Drawer from '@material-ui/core/Drawer'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import { makeStyles } from '@material-ui/core/styles'
-import CategoriaForm from './components/CategoriaForm'
-
-const useStyles = makeStyles(theme => ({
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import Toolbar from "@material-ui/core/Toolbar";
+import Drawer from "@material-ui/core/Drawer";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import { makeStyles } from "@material-ui/core/styles";
+import CategoriaForm from "./components/CategoriaForm";
+import ProdutoForm from "./components/ProdutoForm";
+import api from "./services/api";
+const useStyles = makeStyles((theme) => ({
   appbar: {
     zIndex: theme.zIndex.drawer + 1,
   },
   main: {
-    paddingLeft: 200
-  }
-}))
+    paddingLeft: 200,
+  },
+}));
 
-const TabPanel = props => {
+const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -41,101 +42,70 @@ const TabPanel = props => {
       )}
     </div>
   );
-}
+};
 
 function App() {
-
-  const classes = useStyles()
-  const [tabValue, setTabValue] = useState(0)
-
+  const classes = useStyles();
+  const [tabValue, setTabValue] = useState(0);
+  const [categorias, setCategorias] = useState([]);
+  const [produtos, setProdutos] = useState([]);
   const handleChange = (_, newValue) => {
-    setTabValue(newValue)
+    setTabValue(newValue);
+  };
+  async function getCategorias() {
+    const response = await api.get("categorias");
+    setCategorias(response.data);
   }
-
+  async function getProdutos() {
+    const response = await api.get("products");
+    setProdutos(response.data);
+  }
+  useEffect(() => {
+    getCategorias();
+    getProdutos();
+  }, []);
   return (
     <div>
-      <AppBar position='fixed' className={classes.appbar}>
+      <AppBar position="fixed" className={classes.appbar}>
         <Tabs value={tabValue} onChange={handleChange}>
-          <Tab label='Produtos' />
-          <Tab label='Cadastro de Produto' />
-          <Tab label='Cadastro de Categoria' />
+          <Tab label="Produtos" />
+          <Tab label="Cadastro de Produto" />
+          <Tab label="Cadastro de Categoria" />
         </Tabs>
       </AppBar>
-      <Drawer 
-        variant='permanent'
-        style={{width: 240}}>
+      <Drawer variant="permanent" style={{ width: 240 }}>
         <Toolbar />
         <List>
-          {
-            ["Eletrodomésticos", "Eletrônicos", "Sala", "Cozinha"].map((categoria, index) =>
-              (<ListItem button key={index}>
-                <ListItemText>{categoria}</ListItemText>
-              </ListItem>))
-          }
+          {categorias.map((categoria, index) => (
+            <ListItem button key={index}>
+              <ListItemText>{categoria.name}</ListItemText>
+            </ListItem>
+          ))}
         </List>
       </Drawer>
       <Toolbar />
       <main className={classes.main}>
         <TabPanel value={tabValue} index={0}>
           <Grid container>
-            <Grid item xs={12} xl={3} sm={4} md={6}>
-              <Produto
-                nome="Produto numero 1"
-                descricao="Descricao props numero 1"
-                preco={500}
-                img="https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg"
-              />
-            </Grid>
-            <Grid item xs={12} xl={3} sm={4} md={6}>
-              <Produto
-                nome="Produto com nome diferente"
-                descricao="Descricao diferente"
-                preco={120}
-                img="https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg"
-              />
-            </Grid>
-            <Grid item xs={12} xl={3} sm={4} md={6}>
-              <Produto
-                nome="Produto com nome diferente"
-                descricao="Descricao diferente"
-                preco={120}
-                img="https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg"
-              />
-            </Grid>
-            <Grid item xs={12} xl={3} sm={4} md={6}>
-              <Produto
-                nome="Produto com nome diferente"
-                descricao="Descricao diferente"
-                preco={120}
-                img="https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg"
-              />
-            </Grid>
-            <Grid item xs={12} xl={3} sm={4} md={6}>
-              <Produto
-                nome="Produto com nome diferente"
-                descricao="Descricao diferente"
-                preco={120}
-                img="https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg"
-              />
-            </Grid>
-            <Grid item xs={12} xl={3} sm={4} md={6}>
-              <Produto
-                nome="Produto com nome diferente"
-                descricao="Descricao diferente"
-                preco={120}
-                img="https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg"
-              />
-            </Grid>
+            {produtos.map((produto, i) => (
+              <Grid item xs={12} xl={3} sm={4} md={6} key={i}>
+                <Produto
+                  nome={produto.nome}
+                  descricao={produto.descricao}
+                  preco={produto.preco}
+                  img={produto.img}
+                />
+              </Grid>
+            ))}
           </Grid>
         </TabPanel>
         <TabPanel value={tabValue} index={1}>
-          formulário de produtos
+          <ProdutoForm />
         </TabPanel>
         <TabPanel value={tabValue} index={2}>
           <CategoriaForm />
         </TabPanel>
       </main>
-      
     </div>
   );
 }

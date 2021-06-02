@@ -49,21 +49,29 @@ function App() {
   const [tabValue, setTabValue] = useState(0);
   const [categorias, setCategorias] = useState([]);
   const [produtos, setProdutos] = useState([]);
+
   const handleChange = (_, newValue) => {
     setTabValue(newValue);
   };
   async function getCategorias() {
-    const response = await api.get("categorias");
+    const response = await api.get('categorias');
     setCategorias(response.data);
   }
-  async function getProdutos() {
-    const response = await api.get("products");
+  async function getProdutos(categoriaId) {
+    const query = categoriaId ? `?categoriaId=${categoriaId}` : ''
+    console.log(query)
+    const response = await api.get(`products${query}`);
     setProdutos(response.data);
   }
   useEffect(() => {
     getCategorias();
     getProdutos();
   }, []);
+
+  const handleCategoriaClick = (id) => {
+    getProdutos(id)
+  }
+
   return (
     <div>
       <AppBar position="fixed" className={classes.appbar}>
@@ -77,7 +85,7 @@ function App() {
         <Toolbar />
         <List>
           {categorias.map((categoria, index) => (
-            <ListItem button key={index}>
+            <ListItem button key={index} onClick={() => handleCategoriaClick(categoria.id)}>
               <ListItemText>{categoria.name}</ListItemText>
             </ListItem>
           ))}

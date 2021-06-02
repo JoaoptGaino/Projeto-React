@@ -99,6 +99,30 @@
       "preco": 1000,
       "img": "https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg",
       "id": "Wg37LGy"
+    },
+    {
+      "nome": "Teste",
+      "preco": "2",
+      "descricao": "Descrucai",
+      "img": "https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg",
+      "categoriaId": "2",
+      "id": "BnSA_gF"
+    },
+    {
+      "nome": "Teste2",
+      "preco": "32",
+      "descricao": "Desc2",
+      "img": "https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg",
+      "categoriaId": "2",
+      "id": "5Aj_PiT"
+    },
+    {
+      "nome": "Olha",
+      "preco": "21",
+      "descricao": "Mundo",
+      "img": "https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg",
+      "categoriaId": "3",
+      "id": "KNnJSNM"
     }
   ]
 }

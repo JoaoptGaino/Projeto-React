@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Grid, TextField, Typography } from "@material-ui/core";
+import api from "../services/api";
 
 const ProdutoForm = () => {
   const [form, setForm] = useState({
@@ -8,10 +9,19 @@ const ProdutoForm = () => {
     descricao: "",
     img: "https://images7.kabum.com.br/produtos/fotos/124417/notebook-acer-aspire-3-intel-core-i3-1005g1-4gb-1tb-windows-10-home-15-6-gray-a315-56-36z1_1599224319_g.jpg",
   });
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
+    const response = await api.post('products', form)
+    //falar do problema 200 e error: true que o Marco mostrou
+    if (response.ok) {
+      alert("Produto Adicionado com sucesso!")
+
+    } else {
+      alert("Falha ao adicionar produto!")
+    }
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <Grid container spacing={3} alignItems="center" justify="center">
@@ -40,7 +50,7 @@ const ProdutoForm = () => {
             label="Descrição do produto"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={6} md={3}>
           <TextField
             variant="outlined"
             value={form.preco}
@@ -48,6 +58,16 @@ const ProdutoForm = () => {
             required
             fullWidth
             label="Preço do produto"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={1}>
+          <TextField
+            variant="outlined"
+            value={form.categoriaId}
+            onChange={(e) => setForm({ ...form, categoriaId: e.target.value })}
+            required
+            fullWidth
+            label="Categoria"
           />
         </Grid>
       </Grid>

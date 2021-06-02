@@ -3,17 +3,20 @@ import Grid from "@material-ui/core/Grid";
 import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import api from '../services/api'
 
 const CategoriaForm = () => {
-  const [form, setForm] = useState({ name: "" });
+  const [form, setForm] = useState({ nome: "" });
 
   const handleChange = (event) => {
-    setForm({ name: event.target.value });
+    setForm({ nome: event.target.value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(form.name);
+    api.post('/categorias', form)
+      .then(() => alert("Categoria criada com sucesso"))
+      .catch(err => alert(`Erro na criação: ${err.message}`))
   };
 
   return (
@@ -30,7 +33,7 @@ const CategoriaForm = () => {
               <TextField
                 variant="outlined"
                 label="Nome da Categoria"
-                value={form.name}
+                value={form.nome}
                 required
                 onChange={handleChange}
               />
